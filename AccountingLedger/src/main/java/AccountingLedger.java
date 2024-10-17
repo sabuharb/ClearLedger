@@ -62,6 +62,22 @@ public class AccountingLedger {
         transactions.put(description, deposit);
         System.out.println("Deposit added successfully!");
     }
-    
+
+    private static void makePayment(Map<String, Transaction> transactions, Scanner scanner) {
+        System.out.println("Enter date (YYYY-MM-DD: ");
+        String date = scanner.nextLine();
+        System.out.println("Enter time (HH:MM:SS): ");
+        String time = scanner.nextLine();
+        System.out.println("Enter description: ");
+        String description = scanner.nextLine();
+        System.out.println("Enter vendor: ");
+        String vendor = scanner.nextLine();
+        System.out.println("Enter amount (negative for payment): ");
+        double amount = Double.parseDouble(scanner.nextLine());
+
+        Transaction payment = new Transaction(date, time, description, vendor, amount);
+        transactions.put(description, payment);
+        System.out.println("Payment added successfully!");
+    }
 }
 
