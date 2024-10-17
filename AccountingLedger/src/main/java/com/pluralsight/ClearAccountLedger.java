@@ -43,63 +43,61 @@ public class ClearAccountLedger {
 
 
     private static void showMenu() {
-        System.out.println("▐░░░░░░░░░░░░░▌");
-        System.out.println("⚜️Main Menu ⚜️");
-        System.out.println("▐░░░░░░░░░░░░░▌");
+        System.out.println("▐░░░░░░░⚜️Main Menu ⚜️░░░░░░▌");
         System.out.println("🔰 1) Add Deposit");
         System.out.println("🔰 2) Make Payment");
         System.out.println("🔰 3) View Ledger");
         System.out.println("🔰 4) Exit");
-        System.out.println("📝Enter your choice: ");
+        System.out.println("📝 Enter your choice: ");
     }
 
 
     private static void showLedgerMenu(Map<String, Transaction> transactions, Scanner scanner) {
         String option;
         do {
-            System.out.println("\n--- Ledger Menu ---");
-            System.out.println("A) All - Display all entries");
-            System.out.println("D) Deposits - Display only the entries that are deposits");
-            System.out.println("P) Payments - Display only the negative entries (or payments)");
-            System.out.println("R) Reports - Run predefined reports or a custom search");
-            System.out.println("B) Back - Return to the main menu");
-            System.out.println("Enter your choice: ");
+            System.out.println("\n▐░░░░░░ Ledger Menu ░░░░░░▌");
+            System.out.println("🔰1) All - Display all entries");
+            System.out.println("🔰2) Deposits - Display only the entries that are deposits");
+            System.out.println("🔰3) Payments - Display only the negative entries (or payments)");
+            System.out.println("🔰4) Reports - Run predefined reports or a custom search");
+            System.out.println("🔰5) Back - Return to the main menu");
+            System.out.println("📝 Enter your choice: ");
             option = scanner.nextLine().toUpperCase();
 
             switch (option) {
-                case "A":
+                case "1":
                     showLedger(transactions);
                     break;
-                case "D":
+                case "2":
                     viewOnlyDeposits(transactions);
                     break;
-                case "P":
+                case "3":
                     viewOnlyPayments(transactions);
                     break;
-                case "R":
+                case "4":
                     showReportsMenu(transactions, scanner);
                     break;
-                case "B":
+                case "5":
                     System.out.println("Returning to main menu...");
                     break;
                 default:
                     System.out.println("Invalid option. Please select a valid option.");
             }
-        } while (!option.equals("B"));
+        } while (!option.equals("2"));
     }
 
 
     private static void showReportsMenu(Map<String, Transaction> transactions, Scanner scanner) {
         String option;
         do {
-            System.out.println("\n--- Reports Menu ---");
-            System.out.println("1) Month To Date");
-            System.out.println("2) Previous Month");
-            System.out.println("3) Year To Date");
-            System.out.println("4) Previous Year");
-            System.out.println("5) Search by Vendor");
-            System.out.println("0) Back to Ledger Menu");
-            System.out.println("Enter your choice: ");
+            System.out.println("\n▐░░░░░░ Reports Menu ░░░░░░▌");
+            System.out.println("🔰1) Month To Date");
+            System.out.println("🔰2) Previous Month");
+            System.out.println("🔰3) Year To Date");
+            System.out.println("🔰4) Previous Year");
+            System.out.println("🔰5) Search by Vendor");
+            System.out.println("🔰0) Back to Ledger Menu");
+            System.out.println("📝 Enter your choice: ");
             option = scanner.nextLine();
 
             switch (option) {
@@ -215,7 +213,7 @@ public class ClearAccountLedger {
 
 
     private static void showLedger(Map<String, Transaction> transactions) {
-        System.out.println("\n--- All Ledger Entries ---");
+        System.out.println("\n▐░░░░░░ All Ledger Entries ░░░░░░▌");
         if (transactions.isEmpty()) {
             System.out.println("No transactions available.");
         } else {
@@ -227,7 +225,7 @@ public class ClearAccountLedger {
 
 
     private static void viewOnlyDeposits(Map<String, Transaction> transactions) {
-        System.out.println("\n--- Deposits Only ---");
+        System.out.println("\n▐░░░░░░ Deposits Only ░░░░░░▌");
         for (Transaction t : transactions.values()) {
             if (t.getAmount() > 0) {
                 System.out.println(t);
@@ -237,7 +235,7 @@ public class ClearAccountLedger {
 
 
     private static void viewOnlyPayments(Map<String, Transaction> transactions) {
-        System.out.println("\n--- Payments Only ---");
+        System.out.println("\n▐░░░░░░ Payments Only ░░░░░░▌");
         for (Transaction t : transactions.values()) {
             if (t.getAmount() < 0) {
                 System.out.println(t);
@@ -247,7 +245,7 @@ public class ClearAccountLedger {
 
 
     private static void displayTransactionsInRange(LocalDate startDate, LocalDate endDate) {
-        System.out.println("\n--- Transactions in Range ---");
+        System.out.println("\n▐░░░░░░ Transactions in Range ░░░░░░▌");
         for (Transaction t : transactions.values()) {
             LocalDate transactionDate = LocalDate.parse(t.getDate());
             if (!transactionDate.isBefore(startDate) && !transactionDate.isAfter(endDate)) {
@@ -291,7 +289,7 @@ public class ClearAccountLedger {
         System.out.println("Enter vendor name to search for: ");
         String vendorSearch = scanner.nextLine().toLowerCase();
 
-        System.out.println("\n--- Transactions by Vendor: " + vendorSearch + " ---");
+        System.out.println("\n▐░░░░░░ Transactions by Vendor: " + vendorSearch + " ░░░░░░▌");
         boolean found = false;
         for (Transaction t : transactions.values()) {
             if (t.getVendor().toLowerCase().contains(vendorSearch)) {
