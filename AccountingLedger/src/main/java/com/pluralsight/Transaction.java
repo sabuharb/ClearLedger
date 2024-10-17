@@ -1,3 +1,5 @@
+package com.pluralsight;
+
 public class Transaction {
     private String date;
     private String time;
@@ -5,7 +7,7 @@ public class Transaction {
     private String vendor;
     private double amount;
 
-    // Constructor
+
     public Transaction(String date, String time, String description, String vendor, double amount) {
         this.date = date;
         this.time = time;
@@ -14,7 +16,7 @@ public class Transaction {
         this.amount = amount;
     }
 
-    // Getters and Setters
+
     public String getDate() {
         return date;
     }
@@ -55,13 +57,13 @@ public class Transaction {
         this.amount = amount;
     }
 
-    // Override the toString method to display transaction details
+
     @Override
     public String toString() {
         return String.format("%s | %s | %s | %s | %.2f", date, time, description, vendor, amount);
     }
 
-    // Convert the transaction to CSV string format
+
     public String toCsvString() {
         return date + "|" + time + "|" + description + "|" + vendor + "|" + amount;
     }

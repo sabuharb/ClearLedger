@@ -1,3 +1,5 @@
+package com.pluralsight;
+
 import java.io.*;
 import java.time.LocalDate;
 import java.util.HashMap;
@@ -27,7 +29,7 @@ public class ClearAccountLedger {
                     makePayment(transactions, scanner);
                     break;
                 case "3":
-                    showLedgerMenu(transactions, scanner);  // New method to handle Ledger options
+                    showLedgerMenu(transactions, scanner);
                     break;
                 case "4":
                     saveTransactions(transactions);
@@ -39,7 +41,7 @@ public class ClearAccountLedger {
         } while (!option.equals("4"));
     }
 
-    // Main menu to select different options
+
     private static void showMenu() {
         System.out.println("▐░░░░░░░░░░░░░▌");
         System.out.println("⚜️Main Menu ⚜️");
@@ -51,7 +53,7 @@ public class ClearAccountLedger {
         System.out.println("📝Enter your choice: ");
     }
 
-    // Sub-menu for the Ledger
+
     private static void showLedgerMenu(Map<String, Transaction> transactions, Scanner scanner) {
         String option;
         do {
@@ -86,7 +88,7 @@ public class ClearAccountLedger {
         } while (!option.equals("B"));
     }
 
-    // Sub-menu for Reports
+
     private static void showReportsMenu(Map<String, Transaction> transactions, Scanner scanner) {
         String option;
         do {
@@ -125,7 +127,7 @@ public class ClearAccountLedger {
         } while (!option.equals("0"));
     }
 
-    // Method to add a deposit
+
     private static void addDeposit(Map<String, Transaction> transactions, Scanner scanner) {
         System.out.println("Enter date (YYYY-MM-DD): ");
         String date = scanner.nextLine();
@@ -143,7 +145,7 @@ public class ClearAccountLedger {
         System.out.println("Deposit added successfully!");
     }
 
-    // Method to make a payment
+
     private static void makePayment(Map<String, Transaction> transactions, Scanner scanner) {
         System.out.println("Enter date (YYYY-MM-DD): ");
         String date = scanner.nextLine();
@@ -161,7 +163,7 @@ public class ClearAccountLedger {
         System.out.println("Payment added successfully!");
     }
 
-    // Load transactions from the CSV file
+
     private static Map<String, Transaction> loadTransactions() {
         Map<String, Transaction> transactions = new HashMap<>();
         try (BufferedReader br = new BufferedReader(new FileReader(CSV_FILE))) {
@@ -172,7 +174,7 @@ public class ClearAccountLedger {
                     continue;
                 }
 
-                String[] data = line.split("\\|");  // Split the line into 5 fields
+                String[] data = line.split("\\|");
 
                 if (data.length != 5) {
                     System.out.println("Invalid transaction format: " + line);
@@ -199,7 +201,7 @@ public class ClearAccountLedger {
         return transactions;
     }
 
-    // Save transactions to the CSV file
+
     private static void saveTransactions(Map<String, Transaction> transactions) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(CSV_FILE))) {
             for (Transaction t : transactions.values()) {
@@ -211,7 +213,7 @@ public class ClearAccountLedger {
         }
     }
 
-    // Display the ledger (all transactions)
+
     private static void showLedger(Map<String, Transaction> transactions) {
         System.out.println("\n--- All Ledger Entries ---");
         if (transactions.isEmpty()) {
@@ -223,7 +225,7 @@ public class ClearAccountLedger {
         }
     }
 
-    // View only deposits (positive transactions)
+
     private static void viewOnlyDeposits(Map<String, Transaction> transactions) {
         System.out.println("\n--- Deposits Only ---");
         for (Transaction t : transactions.values()) {
@@ -233,7 +235,7 @@ public class ClearAccountLedger {
         }
     }
 
-    // View only payments (negative transactions)
+
     private static void viewOnlyPayments(Map<String, Transaction> transactions) {
         System.out.println("\n--- Payments Only ---");
         for (Transaction t : transactions.values()) {
@@ -243,7 +245,7 @@ public class ClearAccountLedger {
         }
     }
 
-    // Display transactions within a date range
+
     private static void displayTransactionsInRange(LocalDate startDate, LocalDate endDate) {
         System.out.println("\n--- Transactions in Range ---");
         for (Transaction t : transactions.values()) {
@@ -254,30 +256,34 @@ public class ClearAccountLedger {
         }
     }
 
-    // Reports
+
     private static void monthToDate(Map<String, Transaction> transactions) {
+        ClearAccountLedger.transactions = transactions;
         LocalDate today = LocalDate.now();
         LocalDate startOfMonth = today.withDayOfMonth(1);
         displayTransactionsInRange(startOfMonth, today);
     }
 
     private static void previousMonth(Map<String, Transaction> transactions) {
+        ClearAccountLedger.transactions = transactions;
         LocalDate today = LocalDate.now();
-        LocalDate startOfLastMonth = today.minusMonths(1).withDayOfMonth(1); // Start of the last month
-        LocalDate endOfLastMonth = today.withDayOfMonth(1).minusDays(1); // End of the last month
+        LocalDate startOfLastMonth = today.minusMonths(1).withDayOfMonth(1);
+        LocalDate endOfLastMonth = today.withDayOfMonth(1).minusDays(1);
         displayTransactionsInRange(startOfLastMonth, endOfLastMonth);
     }
 
     private static void yearToDate(Map<String, Transaction> transactions) {
+        ClearAccountLedger.transactions = transactions;
         LocalDate today = LocalDate.now();
-        LocalDate startOfYear = today.withDayOfYear(1); // Start of the current year
-        displayTransactionsInRange(startOfYear, today); // Display transactions from start of year to today
+        LocalDate startOfYear = today.withDayOfYear(1);
+        displayTransactionsInRange(startOfYear, today);
     }
 
     private static void previousYear(Map<String, Transaction> transactions) {
+        ClearAccountLedger.transactions = transactions;
         LocalDate today = LocalDate.now();
-        LocalDate startOfLastYear = today.minusYears(1).withDayOfYear(1); // Start of the last year
-        LocalDate endOfLastYear = today.minusYears(1).withDayOfYear(today.minusYears(1).lengthOfYear()); // End of last year
+        LocalDate startOfLastYear = today.minusYears(1).withDayOfYear(1);
+        LocalDate endOfLastYear = today.minusYears(1).withDayOfYear(today.minusYears(1).lengthOfYear());
         displayTransactionsInRange(startOfLastYear, endOfLastYear);
     }
 
