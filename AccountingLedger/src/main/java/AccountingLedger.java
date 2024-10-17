@@ -1,3 +1,6 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -79,5 +82,20 @@ public class AccountingLedger {
         transactions.put(description, payment);
         System.out.println("Payment added successfully!");
     }
+    private static Map<String, Transaction> loadTransactions() {
+        Map<String, Transaction> transactions = new HashMap<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(CSV_FILE))) {
+            String line;
+            while ((line = br.readLine())) != null) {
+    String[] data = line.split("\\|");
+    Transaction transaction = new Transaction(data[0], data[1], data[2], data[3], Double.parseDouble(data[4]));
+    transactions.put(data[2], transaction );
+            }
+        } catch (IOException e) {
+            System.out.println("No transactions found.");
+        }
+        return transactions;
+    }
+    
 }
 
