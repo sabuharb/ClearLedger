@@ -1,6 +1,4 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -96,6 +94,15 @@ public class AccountingLedger {
         }
         return transactions;
     }
-    
+    private static void saveTransactions(Map<String, Transaction> transactions) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(CSV_FILE))) {
+            for (transactions t : transactions.values()) {
+                bw.write(t.toCsvString());
+                bw.newLine();
+            }
+        } catch (IOException e) {
+            System.out.println("Error saving transactions!");
+        }
+    }
 }
 
