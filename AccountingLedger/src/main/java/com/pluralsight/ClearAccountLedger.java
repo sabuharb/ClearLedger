@@ -43,25 +43,30 @@ public class ClearAccountLedger {
 
 
     private static void showMenu() {
+        System.out.println("Welcome to Clear Accounting Ledger!");
+        System.out.println("-------------------------------");
         System.out.println("▐░░░░░░░⚜️Main Menu ⚜️░░░░░░▌");
+        System.out.println("-------------------------------");
         System.out.println("🔰 1) Add Deposit");
         System.out.println("🔰 2) Make Payment");
         System.out.println("🔰 3) View Ledger");
         System.out.println("🔰 4) Exit");
-        System.out.println("📝 Enter your choice: ");
+        System.out.println("📝 Please make a selection and enter your choice: ");
     }
 
 
     private static void showLedgerMenu(Map<String, Transaction> transactions, Scanner scanner) {
         String option;
         do {
+            System.out.println("------------------------------");
             System.out.println("\n▐░░░░░░ Ledger Menu ░░░░░░▌");
+            System.out.println("------------------------------");
             System.out.println("🔰1) All - Display all entries");
             System.out.println("🔰2) Deposits - Display only the entries that are deposits");
             System.out.println("🔰3) Payments - Display only the negative entries (or payments)");
             System.out.println("🔰4) Reports - Run predefined reports or a custom search");
             System.out.println("🔰5) Back - Return to the main menu");
-            System.out.println("📝 Enter your choice: ");
+            System.out.println("📝 Please make a selection and Enter your choice: ");
             option = scanner.nextLine().toUpperCase();
 
             switch (option) {
@@ -83,14 +88,16 @@ public class ClearAccountLedger {
                 default:
                     System.out.println("Invalid option. Please select a valid option.");
             }
-        } while (!option.equals("2"));
+        } while (!option.equals("5"));
     }
 
 
     private static void showReportsMenu(Map<String, Transaction> transactions, Scanner scanner) {
         String option;
         do {
+            System.out.println("------------------------------");
             System.out.println("\n▐░░░░░░ Reports Menu ░░░░░░▌");
+            System.out.println("------------------------------");
             System.out.println("🔰1) Month To Date");
             System.out.println("🔰2) Previous Month");
             System.out.println("🔰3) Year To Date");
@@ -162,9 +169,11 @@ public class ClearAccountLedger {
     }
 
 
+
     private static Map<String, Transaction> loadTransactions() {
         Map<String, Transaction> transactions = new HashMap<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(CSV_FILE))) {
+        try
+                (BufferedReader br = new BufferedReader(new FileReader(CSV_FILE))) {
             String line;
             while ((line = br.readLine()) != null) {
 
