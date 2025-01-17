@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class ClearAccountLedger {
-    private static final String CSV_FILE = "src/main/resources/transactions.csv";
+    private static final String CSV_FILE = "AccountingLedger/src/main/resources/transactions.csv";
     private static Map<String, Transaction> transactions = new HashMap<>();
 
     public static void main(String[] args) {
@@ -43,15 +43,15 @@ public class ClearAccountLedger {
 
 
     private static void showMenu() {
-        System.out.println("Welcome to Clear Accounting Ledger!");
+        System.out.println("\uD83C\uDF38Welcome to Clear Accounting Ledger!\uD83C\uDF38");
         System.out.println("-------------------------------");
         System.out.println("▐░░░░░░░⚜️Main Menu ⚜️░░░░░░▌");
         System.out.println("-------------------------------");
-        System.out.println("🔰 1) Add Deposit");
-        System.out.println("🔰 2) Make Payment");
-        System.out.println("🔰 3) View Ledger");
-        System.out.println("🔰 4) Exit");
-        System.out.println("📝 Please make a selection and enter your choice: ");
+        System.out.println("🔰 1\uFE0F⃣ Add a Magical Deposit! ✨");
+        System.out.println("🔰 2\uFE0F⃣ Make a Lovely Payment \uD83D\uDC95");
+        System.out.println("🔰 3\uFE0F⃣ Peek at Your Cute Ledger \uD83D\uDCD6");
+        System.out.println("🔰 4\uFE0F⃣ Wave Goodbye and Exit \uD83D\uDC4B");
+        System.out.println("\uD83D\uDC49 Enter your choice here: ");
     }
 
 
@@ -59,14 +59,14 @@ public class ClearAccountLedger {
         String option;
         do {
             System.out.println("------------------------------");
-            System.out.println("\n▐░░░░░░ Ledger Menu ░░░░░░▌");
+            System.out.println("\n▐░░░░░░ \uD83C\uDF3CLedger Menu\uD83C\uDF3C ░░░░░░▌");
             System.out.println("------------------------------");
-            System.out.println("🔰1) All - Display all entries");
-            System.out.println("🔰2) Deposits - Display only the entries that are deposits");
-            System.out.println("🔰3) Payments - Display only the negative entries (or payments)");
-            System.out.println("🔰4) Reports - Run predefined reports or a custom search");
-            System.out.println("🔰5) Back - Return to the main menu");
-            System.out.println("📝 Please make a selection and Enter your choice: ");
+            System.out.println("🔰1\uFE0F⃣ View All the Sparkly Entries ✨");
+            System.out.println("🔰2\uFE0F⃣ Only Show Sweet Deposits \uD83D\uDCB0");
+            System.out.println("🔰3\uFE0F⃣ Only Show Pretty Payments \uD83D\uDCB8");
+            System.out.println("🔰4\uFE0F⃣ Run Magical Reports \uD83D\uDD2E");
+            System.out.println("🔰5\uFE0F⃣ Go Back to the Cozy Main Menu \uD83C\uDFE0");
+            System.out.println("\uD83D\uDC49 Enter your choice here: ");
             option = scanner.nextLine().toUpperCase();
 
             switch (option) {
@@ -96,15 +96,15 @@ public class ClearAccountLedger {
         String option;
         do {
             System.out.println("------------------------------");
-            System.out.println("\n▐░░░░░░ Reports Menu ░░░░░░▌");
+            System.out.println("\n▐░░░░░░ \uD83D\uDD2E Magical Reports Menu \uD83D\uDD2E ░░░░░░▌");
             System.out.println("------------------------------");
-            System.out.println("🔰1) Month To Date");
-            System.out.println("🔰2) Previous Month");
-            System.out.println("🔰3) Year To Date");
-            System.out.println("🔰4) Previous Year");
-            System.out.println("🔰5) Search by Vendor");
-            System.out.println("🔰0) Back to Ledger Menu");
-            System.out.println("📝 Enter your choice: ");
+            System.out.println("🔰1\uFE0F⃣ Month-To-Date \uD83C\uDF1F\"");
+            System.out.println("🔰2\uFE0F⃣ Previous Month \uD83C\uDF19");
+            System.out.println("🔰3\uFE0F⃣ Year-To-Date \uD83C\uDF1E\"");
+            System.out.println("🔰4\uFE0F⃣ Previous Year \uD83C\uDF0C");
+            System.out.println("🔰5\uFE0F⃣ Search by Vendor \uD83D\uDD0D");
+            System.out.println("🔰0\uFE0F⃣ Go Back \uD83C\uDFE0");
+            System.out.println("\uD83D\uDC49 Enter your choice here: ");
             option = scanner.nextLine();
 
             switch (option) {
@@ -124,43 +124,44 @@ public class ClearAccountLedger {
                     searchByVendor(scanner, transactions);
                     break;
                 case "0":
-                    System.out.println("Returning to Ledger Menu...");
+                    System.out.println("\uD83D\uDC49 Enter your choice here: ");
                     break;
                 default:
-                    System.out.println("Invalid option. Please select a valid option.");
+                    System.out.println("❌ Hmm, I didn’t catch that. Try again! ❌");
             }
         } while (!option.equals("0"));
     }
 
 
     private static void addDeposit(Map<String, Transaction> transactions, Scanner scanner) {
-        System.out.println("Enter date (YYYY-MM-DD): ");
+        System.out.println("\uD83D\uDCC5 Enter date (YYYY-MM-DD): ");
         String date = scanner.nextLine();
-        System.out.println("Enter time (HH:MM:SS): ");
+        System.out.println("⏰ Enter time (HH:MM:SS): ");
         String time = scanner.nextLine();
-        System.out.println("Enter description: ");
+        System.out.println("\uD83D\uDCDD What’s the description? ");
         String description = scanner.nextLine();
-        System.out.println("Enter Vendor: ");
+        System.out.println("\uD83C\uDFE2 Who is the Vendor? ");
         String vendor = scanner.nextLine();
-        System.out.println("Enter amount: ");
+        System.out.println("\uD83D\uDCB5 How much are we adding? ");
         double amount = Double.parseDouble(scanner.nextLine());
 
         Transaction deposit = new Transaction(date, time, description, vendor, amount);
         transactions.put(description, deposit);
-        System.out.println("Deposit added successfully!");
+        System.out.println("\uD83C\uDF89 Woohoo! Deposit added successfully! \uD83C\uDF89");
     }
 
 
     private static void makePayment(Map<String, Transaction> transactions, Scanner scanner) {
-        System.out.println("Enter date (YYYY-MM-DD): ");
+        System.out.println("\uD83D\uDCB8 Let’s record your payment! \uD83D\uDCB8");
+        System.out.println("\uD83D\uDCC5 Enter date (YYYY-MM-DD): ");
         String date = scanner.nextLine();
-        System.out.println("Enter time (HH:MM:SS): ");
+        System.out.println("⏰ Enter time (HH:MM:SS): ");
         String time = scanner.nextLine();
-        System.out.println("Enter description: ");
+        System.out.println("\uD83D\uDCDD What’s the description? ");
         String description = scanner.nextLine();
-        System.out.println("Enter vendor: ");
+        System.out.println("\uD83C\uDFE2 Who is the Vendor? ");
         String vendor = scanner.nextLine();
-        System.out.println("Enter amount (negative for payment): ");
+        System.out.println("\uD83D\uDCB5 How much are we paying? (use negative for payments): ");
         double amount = Double.parseDouble(scanner.nextLine());
 
         if (amount >0) {
@@ -169,7 +170,7 @@ public class ClearAccountLedger {
 
         Transaction payment = new Transaction(date, time, description, vendor, amount);
         transactions.put(description, payment);
-        System.out.println("Payment added successfully!");
+        System.out.println("✔\uFE0F Payment recorded! You’re doing great! \uD83C\uDF1F");
     }
 
 
@@ -226,9 +227,9 @@ public class ClearAccountLedger {
 
 
     private static void showLedger(Map<String, Transaction> transactions) {
-        System.out.println("\n▐░░░░░░ All Ledger Entries ░░░░░░▌");
+        System.out.println("\n▐░░░░░░ \uD83D\uDCDA Here’s Your Full Ledger \uD83D\uDCDA ░░░░░░▌");
         if (transactions.isEmpty()) {
-            System.out.println("No transactions available.");
+            System.out.println("It’s a little empty in here. Add something magical! ✨");
         } else {
             for (Transaction t : transactions.values()) {
                 System.out.println(t);
@@ -238,7 +239,7 @@ public class ClearAccountLedger {
 
 
     private static void viewOnlyDeposits(Map<String, Transaction> transactions) {
-        System.out.println("\n▐░░░░░░ Deposits Only ░░░░░░▌");
+        System.out.println("\n▐░░░░░░ \uD83D\uDCB0 Showing Only Your Happy Deposits! \uD83D\uDCB0 ░░░░░░▌");
         for (Transaction t : transactions.values()) {
             if (t.getAmount() > 0) {
                 System.out.println(t);
@@ -248,7 +249,7 @@ public class ClearAccountLedger {
 
 
     private static void viewOnlyPayments(Map<String, Transaction> transactions) {
-        System.out.println("\n▐░░░░░░ Payments Only ░░░░░░▌");
+        System.out.println("\n▐░░░░░░ \uD83D\uDCB8 Showing Only Your Lovely Payments \uD83D\uDCB8 ░░░░░░▌");
         boolean found = false;
         for (Transaction t : transactions.values()) {
             if (t.getAmount() < 0) {
@@ -308,7 +309,7 @@ public class ClearAccountLedger {
         System.out.println("Enter vendor name to search for: ");
         String vendorSearch = scanner.nextLine().toLowerCase();
 
-        System.out.println("\n▐░░░░░░ Transactions by Vendor: " + vendorSearch + " ░░░░░░▌");
+        System.out.println("\n▐░░░░░░ \uD83D\uDCB8 Showing Only Your Lovely Payments \uD83D\uDCB8 " + vendorSearch + " ░░░░░░▌");
         boolean found = false;
         for (Transaction t : transactions.values()) {
             if (t.getVendor().toLowerCase().contains(vendorSearch)) {
@@ -318,7 +319,7 @@ public class ClearAccountLedger {
         }
 
         if (!found) {
-            System.out.println("No transactions found for the vendor: " + vendorSearch);
+            System.out.println("❌ Hmm, I didn’t catch that. Try again! ❌ " + vendorSearch);
         }
     }
 }
