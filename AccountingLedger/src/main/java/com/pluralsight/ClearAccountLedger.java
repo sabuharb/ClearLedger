@@ -163,6 +163,10 @@ public class ClearAccountLedger {
         System.out.println("Enter amount (negative for payment): ");
         double amount = Double.parseDouble(scanner.nextLine());
 
+        if (amount >0) {
+            amount = -amount;
+        }
+
         Transaction payment = new Transaction(date, time, description, vendor, amount);
         transactions.put(description, payment);
         System.out.println("Payment added successfully!");
@@ -245,10 +249,16 @@ public class ClearAccountLedger {
 
     private static void viewOnlyPayments(Map<String, Transaction> transactions) {
         System.out.println("\n▐░░░░░░ Payments Only ░░░░░░▌");
+        boolean found = false;
         for (Transaction t : transactions.values()) {
             if (t.getAmount() < 0) {
                 System.out.println(t);
+                found = true;
             }
+        }
+        if (!found) {
+            String vendorSearch = "";
+            System.out.println("No Transactions found for vendor: " + vendorSearch);
         }
     }
 
